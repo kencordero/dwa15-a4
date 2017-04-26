@@ -4,6 +4,7 @@
 	<title>@yield('title')</title>
 
 	<meta charset='utf-8'>
+	<link rel="shortcut icon" type="'image/x-icon" href="/favicon-shopping-cart.ico">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/app.css" >
     @stack('head')
@@ -11,12 +12,11 @@
 <body>
 	<header>
 		@yield('header')
-		@include('layouts.nav')
 	</header>
 
-	<section>
+	<div class="container">
 		@yield('content')
-	</section>
+	</div>
 
 	<div class="navbar-fixed-bottom">
 	<hr>

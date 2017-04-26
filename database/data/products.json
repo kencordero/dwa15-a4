@@ -1,0 +1,32 @@
+[
+  {
+    "name": "pen",
+    "price": 0.99,
+    "image_file": "/images/pen.png"
+  },
+  {
+    "name": "book",
+    "price": 9.99,
+    "image_file": "/images/book.jpg"
+  },
+  {
+    "name": "curtains",
+    "price": 49.99,
+    "image_file": "/images/curtains-for-you.jpg"
+  },
+  {
+    "name": "shoes",
+    "price": 79.99,
+    "image_file": "/images/Zapatillas.jpg"
+  },
+  {
+    "name": "4K TV",
+    "price": 2499.99,
+    "image_file": "/images/tv.jpg"
+  },
+  {
+    "name": "house",
+    "price": 799900,
+    "image_file": "/images/house.jpg"
+  }
+]

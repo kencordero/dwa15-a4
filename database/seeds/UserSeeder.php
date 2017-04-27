@@ -12,12 +12,13 @@ class UserSeeder extends Seeder
    */
    public function run()
    {
-       $users = json_decode(file_get_contents(database_path().'/data/users.json'));
+       $users = json_decode(file_get_contents(database_path().'/data/users.json'), true);
 
        foreach ($users as $user) {
            User::create([
-              'name' => $user['name'],
-              'email' => $user['email'],
+               'name' => $user['name'],
+               'email' => $user['email'],
+               'password' => $user['password'],
            ]);
        }
    }

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Foostore
+    Foostore: {{ $product->name }}
 @endsection
 
 @section('header')
@@ -10,7 +10,7 @@
             <a class="navbar-brand" href="/">FooStore</a>
         </div>
         <ul class="nav nav-pills navbar-inverse nav-justified">
-            <li><a href="/products">Products</a>
+            <li class="active"><a href="/products">Products</a>
             <li><a href="/wishlist">Wishlist</a>
             <li><a href="/cart">Cart</a>
             <li><a href="/orders">Orders</a>
@@ -19,7 +19,8 @@
 @endsection
 
 @section('content')
-    <h1>Foostore</h1>
-    <h4>The online destination for all* of your shopping needs</h4>
-    <i>*Three</i>
+    <h3 class="text-center">{{ $product->name }}</h3>
+    <img src="/images/{{ $product->image_file }}">
+    <button class="btn btn-default">Add to cart</button>
+    <div>${{ number_format($product->price, 2) }}</div>
 @endsection

@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController');
+
+if (config('Foostore.env') == 'local') {
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+}
+
+Route::get('/products', 'ProductController@index');
+Route::get('/products/{id}', 'ProductController@showProduct')->where(['id' => '[0-9]+']);
+Route::get('/products/random', 'ProductController@showRandomProduct');

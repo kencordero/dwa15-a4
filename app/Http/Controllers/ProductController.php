@@ -8,6 +8,7 @@ use App\Product;
 class ProductController extends Controller
 {
     /*
+     *  GET
      *  /products
      */
     public function index()
@@ -19,6 +20,7 @@ class ProductController extends Controller
     }
 
     /*
+     *  GET
      *  /products/{id}
      */
     public function showProduct($id)
@@ -35,6 +37,10 @@ class ProductController extends Controller
         ]);
     }
 
+    /*
+     *  GET
+     *  /products/random
+     */
     public function showRandomProduct()
     {
         $product = Product::inRandomOrder()->first();

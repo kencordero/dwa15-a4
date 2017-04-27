@@ -1,32 +1,88 @@
 [
   {
-    "name": "pen",
-    "price": 0.99,
-    "image_file": "/images/pen.png"
-  },
-  {
-    "name": "book",
+    "name": "children's book",
     "price": 9.99,
-    "image_file": "/images/book.jpg"
+    "image_file": "childrens_book.jpg"
   },
   {
     "name": "curtains",
     "price": 49.99,
-    "image_file": "/images/curtains-for-you.jpg"
+    "image_file": "curtains.jpg"
   },
   {
-    "name": "shoes",
-    "price": 79.99,
-    "image_file": "/images/Zapatillas.jpg"
+    "name": "food",
+    "price": 6.99,
+    "image_file": "food.jpg"
   },
   {
-    "name": "4K TV",
-    "price": 2499.99,
-    "image_file": "/images/tv.jpg"
+    "name": "golf balls",
+    "price": 24.99,
+    "image_file": "golf_balls.jpg"
+  },
+  {
+    "name": "headband",
+    "price": 12,
+    "image_file": "headband.jpg"
+  },
+  {
+    "name": "sauce",
+    "price": 4.99,
+    "image_file": "hot_sauce.jpg"
   },
   {
     "name": "house",
     "price": 799900,
-    "image_file": "/images/house.jpg"
+    "image_file": "house.jpg"
+  },
+  {
+    "name": "leaf blower",
+    "price": 59.99,
+    "image_file": "leaf_blower.jpg"
+  },
+  {
+    "name": "movie",
+    "price": 14.99,
+    "image_file": "movie.jpg"
+  },
+  {
+    "name": "music",
+    "price": 12.99,
+    "image_file": "music.jpg"
+  },
+  {
+    "name": "pen",
+    "price": 0.99,
+    "image_file": "pen.png"
+  },
+  {
+    "name": "pet cologne",
+    "price": 24,
+    "image_file": "pet_cologne.jpg"
+  },
+  {
+    "name": "software",
+    "price": 39.99,
+    "image_file": "software.jpg"
+  },
+  {
+    "name": "statue",
+    "price": 39.99,
+    "image_file": "statue.jpg"
+  },
+  {
+    "name": "shoes",
+    "price": 79.99,
+    "image_file": "trainers.jpg"
+  },
+  {
+    "name": "television",
+    "price": 2499.99,
+    "image_file": "tv.jpg"
+  },
+  {
+    "name": "young adult book",
+    "price": 6.99,
+    "image_file": "ya_book.jpg"
   }
+
 ]

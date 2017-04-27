@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Foostore\User;
+use App\User;
 
 class UserSeeder extends Seeder
 {

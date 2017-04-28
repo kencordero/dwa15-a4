@@ -13,7 +13,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // TODO
+        $orders = Order::all();
+
+        return view('orders.index')->with([
+            'orders' => $orders,
+        ]);
     }
 
     /*
@@ -22,6 +26,9 @@ class OrderController extends Controller
      */
     public function showOrderDetails()
     {
-        // TODO
+        $order = Order::find($id);
+        return view('orders.orderDetail')->with([
+            'order' => $order,
+        ]);
     }
 }

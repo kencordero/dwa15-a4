@@ -23,7 +23,7 @@ Route::get('/products/random', 'ProductController@showRandomProduct');
 
 Route::get('/cart', 'CartController@index');
 Route::post('/cart', 'CartController@addToCart');
-Route::delete('/cart', 'CartController@removeFromCart');
+//Route::delete('/cart', 'CartController@removeFromCart');
 
 Route::get('/orders', 'OrderController@index');
 Route::get('/orders/{id}', 'OrderController@showOrderDetails')->where(['id' => '[0-9]+']);

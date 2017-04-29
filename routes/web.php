@@ -18,7 +18,7 @@ if (config('app.env') == 'local') {
 }
 
 Route::get('/products', 'ProductController@index');
-Route::get('/products/{id}', 'ProductController@showProduct')->where(['id' => '[0-9]+']);
+Route::get('/products/{id}', 'ProductController@showProduct');
 Route::get('/products/random', 'ProductController@showRandomProduct');
 
 Route::get('/cart', 'CartController@index');
@@ -26,4 +26,4 @@ Route::post('/cart', 'CartController@addToCart');
 //Route::delete('/cart', 'CartController@removeFromCart');
 
 Route::get('/orders', 'OrderController@index');
-Route::get('/orders/{id}', 'OrderController@showOrderDetails')->where(['id' => '[0-9]+']);
+Route::get('/orders/{id}', 'OrderController@showOrderDetails');

@@ -21,9 +21,15 @@ Route::get('/products', 'ProductController@index');
 Route::get('/products/{id}', 'ProductController@showProduct');
 Route::get('/products/random', 'ProductController@showRandomProduct');
 
-Route::get('/cart', 'CartController@index');
-Route::post('/cart', 'CartController@addToCart');
-//Route::delete('/cart', 'CartController@removeFromCart');
+Route::get('/cart', 'BagController@showCart');
+Route::post('/cart', 'BagController@addToCart');
+// TODO remove to cart
+Route::get('/wish_list', 'BagController@showWishList');
 
 Route::get('/orders', 'OrderController@index');
 Route::get('/orders/{id}', 'OrderController@showOrderDetails');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

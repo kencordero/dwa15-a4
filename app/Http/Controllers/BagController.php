@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cart;
 
-class CartController extends Controller
+class BagController extends Controller
 {
     /*
      *  GET
      *  /cart
      */
-    public function index()
+    public function showCart()
     {
-        // TODO
-        return view('cart.index');
+        return view('bags.showCart');
     }
+
 
     /*
      *  POST
@@ -33,5 +33,10 @@ class CartController extends Controller
     public function removeFromCart()
     {
         // TODO
+    }
+
+    public function showWishList()
+    {
+        return view('bags.showWishList');
     }
 }

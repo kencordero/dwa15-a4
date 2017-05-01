@@ -11,6 +11,9 @@
 </head>
 <body>
 	<header>
+		@if(Session::get('message') != null)
+			<div class='message'>{{ Session::get('message') }}</div>
+		@endif
 		@yield('header')
 	</header>
 

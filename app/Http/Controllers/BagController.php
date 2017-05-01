@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Cart;
 
 class BagController extends Controller
@@ -23,11 +24,16 @@ class BagController extends Controller
      */
     public function addToCart()
     {
-        // TODO
+        // TODO if user does not have an active cart, create one
+
+
+        Session::flash('message', 'Added to cart');
+
+        return view('bags.showCart');
     }
 
     /*
-     *  DELETE
+     *  ???
      *  /cart
      */
     public function removeFromCart()

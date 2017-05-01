@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCartsTable extends Migration
+class ConnectBagAndUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateCartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bags', function(Blueprint $table) {
+        Schema::table('bags', function(Blueprint $table) {
             $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -25,6 +26,7 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bags');
+        $table->dropForeign('bags_user_id_foreign');
+        $table->dropColumn('user_id');        
     }
 }

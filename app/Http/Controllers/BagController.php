@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
-use App\Cart;
+use App\Bag;
 
 class BagController extends Controller
 {

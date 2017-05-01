@@ -3,8 +3,8 @@
 <head>
 	<title>@yield('title')</title>
 
-	<meta charset='utf-8'>
-	<link rel="shortcut icon" type="'image/x-icon" href="/favicon-shopping-cart.ico">
+	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon-shopping-cart.ico">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/app.css" >
     @stack('head')
@@ -12,7 +12,7 @@
 <body>
 	<header>
 		@if(Session::get('message') != null)
-			<div class='message'>{{ Session::get('message') }}</div>
+			<div class="message">{{ Session::get('message') }}</div>
 		@endif
 		<nav class="nav navbar">
 	        <div class="navbar-header">

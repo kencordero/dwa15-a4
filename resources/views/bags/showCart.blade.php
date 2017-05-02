@@ -5,5 +5,7 @@
 @endsection
 
 @section('content')
-
+    @foreach($productsInCart as $product)
+        <li> {{ $product->name }}</li>
+    @endforeach
 @endsection

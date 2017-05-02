@@ -1,12 +1,12 @@
 [
     {
-        "name": "harvard",
-        "email": "harvard@kentheken.com",
-        "password": "harvard"
-    },
-    {
         "name": "ken",
         "email": "ken@kentheken.com",
         "password": "ken"
+    },
+    {
+        "name": "harvard",
+        "email": "harvard@harvard.edu",
+        "password": "harvard"
     }
 ]

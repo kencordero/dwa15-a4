@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Bag;
+use App\Product;
 
 class ConnectBagAndUser extends Migration
 {
@@ -26,7 +28,9 @@ class ConnectBagAndUser extends Migration
      */
     public function down()
     {
-        $table->dropForeign('bags_user_id_foreign');
-        $table->dropColumn('user_id');        
+        Schema::table('bags', function(Blueprint $table) {
+            $table->dropForeign('bags_user_id_foreign');
+            $table->dropColumn('user_id');
+        });
     }
 }

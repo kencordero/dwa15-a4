@@ -56,13 +56,17 @@ class BagController extends Controller
 
     /*
      *  ???
-     *  /cart
+     *  /???
      */
     public function removeFromCart()
     {
         // TODO
     }
 
+    /*
+     * GET
+     * /wishlist
+     */
     public function showWishList()
     {
         return view('bags.showWishList');

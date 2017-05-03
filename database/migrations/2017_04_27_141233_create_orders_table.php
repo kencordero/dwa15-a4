@@ -15,11 +15,13 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('cart_id');
-            $table->string('payment_method');
-            $table->string('status');
+            $table->integer('bag_id')->unsigned();
+            $table->string('payment_method'); // TODO payment_method table
+            $table->string('status'); // TODO order_status table
             $table->decimal('total_price');
             $table->timestamps();
+
+            $table->foreign('bag_id')->references('id')->on('bags');
         });
     }
 
@@ -30,6 +32,7 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign('orders_bag_id_foreign');
         Schema::dropIfExists('orders');
     }
 }

@@ -46,7 +46,7 @@ class BagController extends Controller
         $productIdsInCart = array_pluck($bag->products->toArray(), 'id');
 
         if (in_array($productId, $productIdsInCart)) {
-            // TODO
+            // TODO if product already in cart, increment quantity
         } else {
             $bag->products()->attach($productId, ['quantity' => 1,]);
         }
@@ -60,7 +60,7 @@ class BagController extends Controller
      *  ???
      *  /???
      */
-    public function removeFromCart()
+    public function removeFromCart(Request $request)
     {
         // TODO
     }
@@ -71,16 +71,16 @@ class BagController extends Controller
      */
     public function checkout()
     {
-        // TODO
+        return view('bags.checkout');
     }
 
     /*
      * POST
      * /cart/checkout
      */
-    public function placeOrder()
+    public function placeOrder(Request $request)
     {
-        // TODO
+        return view('bags.placeOrder');
     }
 
     /*
@@ -89,6 +89,20 @@ class BagController extends Controller
      */
     public function showWishList()
     {
-        return view('bags.showWishList');
+        $bag = Bag::with('products')->where('type', '=', 'wishlist')
+            ->where('user_id', '=', Auth::id())->first();
+
+        return view('bags.showWishList')->with([
+            'productsOnWishList' => $bag->products,
+        ]);
     }
+
+    /*
+     * POST
+     * /wishlist
+     */
+     public function addToWishList()
+     {
+         // TODO
+     }
 }

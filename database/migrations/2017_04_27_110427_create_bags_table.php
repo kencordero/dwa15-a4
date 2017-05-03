@@ -15,7 +15,7 @@ class CreateBagsTable extends Migration
     {
         Schema::create('bags', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
+            $table->string('type', 10); //TODO create type table
             $table->timestamps();
         });
     }

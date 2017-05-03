@@ -6,6 +6,6 @@
 
 @section('content')
     @foreach($productsInCart as $product)
-        <li> {{ $product->name }}</li>
+        <li> {{ $product->name }}, {{ $product->pivot->quantity }}</li>
     @endforeach
 @endsection

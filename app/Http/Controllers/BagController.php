@@ -18,7 +18,6 @@ class BagController extends Controller
         $bag = Bag::with('products')->where('type', '=', 'cart')
             ->where('user_id', '=', Auth::id())->first();
 
-
         return view('bags.showCart')->with([
             'productsInCart' => $bag->products,
         ]);

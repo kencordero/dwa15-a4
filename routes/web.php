@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'WelcomeController');
+Route::get('/home', 'HomeController@index');
 
 if (config('app.env') == 'local') {
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
@@ -23,13 +24,13 @@ Route::get('/products/random', 'ProductController@showRandomProduct');
 
 Route::get('/cart', 'BagController@showCart');
 Route::post('/cart', 'BagController@addToCart');
-// TODO remove to cart
+// TODO remove from cart
+Route::get('/cart/checkout', 'BagController@checkout');
+Route::post('/cart/checkout', 'BagController@placeOrder');
+
 Route::get('/wish_list', 'BagController@showWishList');
 
 Route::get('/orders', 'OrderController@index');
 Route::get('/orders/{id}', 'OrderController@showOrderDetails');
 
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');

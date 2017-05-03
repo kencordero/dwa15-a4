@@ -11,6 +11,6 @@ class Bag extends Model
    }
 
    public function products() {
-       return $this->belongsToMany('App\Product')->withPivot('quantity');
+       return $this->belongsToMany('App\Product')->withPivot('quantity')->withTimestamps();
    }
 }

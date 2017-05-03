@@ -35,15 +35,21 @@ class BagController extends Controller
         }
 
         // if user does not have an active cart, create one
-        $cart = Bag::where('type', '=', 'cart')->first();
-        if (is_null($cart)) {
-            $cart = new Bag();
-            $cart->type = 'cart';
-            $cart->user_id = Auth::id();
-            $cart->save();
+        $bag = Bag::where('type', '=', 'cart')->first();
+        if (is_null($bag)) {
+            $bag = new Bag();
+            $bag->type = 'cart';
+            $bag->user_id = Auth::id();
+            $bag->save();
         }
-        $cart->products()->attach($request->product_id, ['quantity' => 1,]);
+        $productId = $request->product_id;
+        $productIdsInCart = array_pluck($bag->products->toArray(), 'id');
 
+        if (in_array($productId, $productIdsInCart)) {
+            // TODO
+        } else {
+            $bag->products()->attach($productId, ['quantity' => 1,]);
+        }
 
         Session::flash('message', 'Added to cart');
 
@@ -55,6 +61,24 @@ class BagController extends Controller
      *  /???
      */
     public function removeFromCart()
+    {
+        // TODO
+    }
+
+    /*
+     * GET
+     * /cart/checkout
+     */
+    public function checkout()
+    {
+        // TODO
+    }
+
+    /*
+     * POST
+     * /cart/checkout
+     */
+    public function placeOrder()
     {
         // TODO
     }

@@ -15,13 +15,14 @@ class BagController extends Controller
      */
     public function showCart()
     {
-        $productsInCart = Bag::where('type', '=', 'cart')
-            ->where('user_id', '=', Auth::id())->first()->products();
+        $bag = Bag::with('products')->where('type', '=', 'cart')
+            ->where('user_id', '=', Auth::id())->first();
+
+
         return view('bags.showCart')->with([
-            'productsInCart' => $productsInCart,
+            'productsInCart' => $bag->products,
         ]);
     }
-
 
     /*
      *  POST
@@ -41,10 +42,6 @@ class BagController extends Controller
             $cart->type = 'cart';
             $cart->user_id = Auth::id();
             $cart->save();
-            dump('new cart created');
-            dump($cart);
-        } else {
-            dump('cart already exists');
         }
         $cart->products()->attach($request->product_id, ['quantity' => 1,]);
 

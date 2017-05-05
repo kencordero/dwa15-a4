@@ -15,7 +15,13 @@ class BagController extends Controller
      */
     public function showCart()
     {
-        $bag = Bag::with('products')->where('type', '=', 'cart')
+        if (!Auth::check()) {
+            Session::flash('message', 'Please login to see cart');
+            return redirect('/login');
+        }
+
+        $bag = Bag::with('products')
+            ->where('type', '=', 'cart')
             ->where('user_id', '=', Auth::id())->first();
 
         return view('bags.showCart')->with([

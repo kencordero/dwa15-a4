@@ -16,7 +16,10 @@ class CreateBagsTable extends Migration
         Schema::create('bags', function(Blueprint $table) {
             $table->increments('id');
             $table->string('type', 10); //TODO create type table
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

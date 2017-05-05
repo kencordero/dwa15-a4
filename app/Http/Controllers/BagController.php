@@ -20,9 +20,7 @@ class BagController extends Controller
             return redirect('/login');
         }
 
-        $bag = Bag::with('products')
-            ->where('type', '=', 'cart')
-            ->where('user_id', '=', Auth::id())->first();
+        $bag = getOrCreateCart();
 
         return view('bags.showCart')->with([
             'productsInCart' => $bag->products,
@@ -40,14 +38,8 @@ class BagController extends Controller
             return redirect('/login');
         }
 
-        // if user does not have an active cart, create one
-        $bag = Bag::where('type', '=', 'cart')->first();
-        if (is_null($bag)) {
-            $bag = new Bag();
-            $bag->type = 'cart';
-            $bag->user_id = Auth::id();
-            $bag->save();
-        }
+        $bag = Bag::getOrCreateCart();
+
         $productId = $request->product_id;
         $productIdsInCart = array_pluck($bag->products->toArray(), 'id');
 
@@ -95,8 +87,7 @@ class BagController extends Controller
      */
     public function showWishList()
     {
-        $bag = Bag::with('products')->where('type', '=', 'wishlist')
-            ->where('user_id', '=', Auth::id())->first();
+        $bag = Bag::getOrCreateWishList();
 
         return view('bags.showWishList')->with([
             'productsOnWishList' => $bag->products,

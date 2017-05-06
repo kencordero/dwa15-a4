@@ -20,10 +20,10 @@ class BagController extends Controller
             return redirect('/login');
         }
 
-        $bag = getOrCreateCart();
+        $bag = Bag::getOrCreateCart();
 
         return view('bags.showCart')->with([
-            'productsInCart' => $bag->products,
+            'products' => $bag->products,
         ]);
     }
 
@@ -40,7 +40,7 @@ class BagController extends Controller
 
         $bag = Bag::getOrCreateCart();
 
-        $productId = $request->product_id;
+        $productId = $request->productId;
         $productIdsInCart = array_pluck($bag->products->toArray(), 'id');
 
         if (in_array($productId, $productIdsInCart)) {
@@ -87,10 +87,15 @@ class BagController extends Controller
      */
     public function showWishList()
     {
+        if (!Auth::check()) {
+            Session::flash('message', 'Please login to see your wish list');
+            return redirect('/login');
+        }
+
         $bag = Bag::getOrCreateWishList();
 
         return view('bags.showWishList')->with([
-            'productsOnWishList' => $bag->products,
+            'products' => $bag->products,
         ]);
     }
 
@@ -98,8 +103,26 @@ class BagController extends Controller
      * POST
      * /wishlist
      */
-     public function addToWishList()
+     public function addToWishList(Request $request)
      {
-         // TODO
+         if (!Auth::check()) {
+             Session::flash('message', 'Please login to add to your wish list');
+             return redirect('/login');
+         }
+
+         $bag = Bag::getOrCreateWishList();
+
+         $productId = $request->productId;
+         $productIdsInCart = array_pluck($bag->products->toArray(), 'id');
+
+         if (in_array($productId, $productIdsInCart)) {
+             // TODO if product already in cart, increment quantity
+         } else {
+             $bag->products()->attach($productId, ['quantity' => 1,]);
+         }
+
+         Session::flash('message', 'Added to cart');
+
+         return redirect('/wishlist');
      }
 }

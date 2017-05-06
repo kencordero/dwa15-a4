@@ -39,15 +39,7 @@ class BagController extends Controller
         }
 
         $bag = Bag::getOrCreateCart();
-
-        $productId = $request->productId;
-        $productIdsInCart = array_pluck($bag->products->toArray(), 'id');
-
-        if (in_array($productId, $productIdsInCart)) {
-            // TODO if product already in cart, increment quantity
-        } else {
-            $bag->products()->attach($productId, ['quantity' => 1,]);
-        }
+        $bag->addToBag($request->productId);
 
         Session::flash('message', 'Added to cart');
 
@@ -111,17 +103,9 @@ class BagController extends Controller
          }
 
          $bag = Bag::getOrCreateWishList();
+         $bag->addToBag($request->productId);
 
-         $productId = $request->productId;
-         $productIdsInCart = array_pluck($bag->products->toArray(), 'id');
-
-         if (in_array($productId, $productIdsInCart)) {
-             // TODO if product already in cart, increment quantity
-         } else {
-             $bag->products()->attach($productId, ['quantity' => 1,]);
-         }
-
-         Session::flash('message', 'Added to cart');
+         Session::flash('message', 'Added to wish list');
 
          return redirect('/wishlist');
      }

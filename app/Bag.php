@@ -29,11 +29,13 @@ class Bag extends Model
         $productIdsInCart = array_pluck($this->products->toArray(), 'id');
 
         if (in_array($productId, $productIdsInCart)) {
-            // TODO if product already in cart, increment quantity
-            return false;
+            if ($this->type == 'cart') {
+                $quantity = $this->products->where('id', '=', $productId)->first()->pivot->quantity;
+                $this->products()->updateExistingPivot($productId, ['quantity' => $quantity + 1,]);
+                $this->save;
+            }
         } else {
             $this->products()->attach($productId, ['quantity' => 1,]);
-            return true;
         }
     }
 

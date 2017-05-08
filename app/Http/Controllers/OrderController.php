@@ -32,6 +32,8 @@ class OrderController extends Controller
     public function showOrderDetails()
     {
         $order = Order::find($id);
+        // TODO only show order if it is associated with the current user
+
         return view('orders.orderDetail')->with([
             'order' => $order,
         ]);

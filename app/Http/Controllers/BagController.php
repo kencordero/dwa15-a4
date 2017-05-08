@@ -3,23 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Bag;
 
 class BagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /*
      *  GET
      *  /cart
      */
     public function showCart()
     {
-        if (!Auth::check()) {
-            Session::flash('message', 'Please login to see cart');
-            return redirect('/login');
-        }
-
         $bag = Bag::getOrCreateCart();
 
         return view('bags.showCart')->with([
@@ -33,11 +31,6 @@ class BagController extends Controller
      */
     public function addToCart(Request $request)
     {
-        if (!Auth::check()) {
-            Session::flash('message', 'Please login to add to your cart');
-            return redirect('/login');
-        }
-
         $bag = Bag::getOrCreateCart();
         $bag->addToBag($request->productId);
 
@@ -70,10 +63,6 @@ class BagController extends Controller
      */
     public function placeOrder(Request $request)
     {
-        if (!Auth::check()) {
-            Session::flash('message', 'Please login');
-        }
-
         $bag = Bag::placeOrder();
         return view('bags.placeOrder')->with([
             'products' => $bag->products,
@@ -86,11 +75,6 @@ class BagController extends Controller
      */
     public function showWishList()
     {
-        if (!Auth::check()) {
-            Session::flash('message', 'Please login to see your wish list');
-            return redirect('/login');
-        }
-
         $bag = Bag::getOrCreateWishList();
 
         return view('bags.showWishList')->with([
@@ -104,11 +88,6 @@ class BagController extends Controller
      */
      public function addToWishList(Request $request)
      {
-         if (!Auth::check()) {
-             Session::flash('message', 'Please login to add to your wish list');
-             return redirect('/login');
-         }
-
          $bag = Bag::getOrCreateWishList();
          $bag->addToBag($request->productId);
 

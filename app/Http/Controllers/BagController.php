@@ -70,7 +70,14 @@ class BagController extends Controller
      */
     public function placeOrder(Request $request)
     {
-        return view('bags.placeOrder');
+        if (!Auth::check()) {
+            Session::flash('message', 'Please login');
+        }
+
+        $bag = Bag::placeOrder();
+        return view('bags.placeOrder')->with([
+            'products' => $bag->products,
+        ]);
     }
 
     /*

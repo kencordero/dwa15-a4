@@ -39,6 +39,14 @@ class Bag extends Model
         }
     }
 
+    public function placeOrder() {
+        $bag = Bag::getOrCreateCart();
+        $bag->type = 'order';
+        $bag->save;
+
+        return $bag;
+    }
+
     private static function getOrCreateBagType($bagType) {
         $bag = Bag::where('type', '=', $bagType)
             ->where('user_id', '=', Auth::id())

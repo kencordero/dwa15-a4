@@ -5,3 +5,7 @@ img {
 a img {
     height: 100px;
 }
+
+.navbar-brand img {
+    height: 30px;
+}

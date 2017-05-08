@@ -16,7 +16,7 @@
 		@endif
 		<nav class="nav navbar">
 	        <div class="navbar-header">
-	            <a class="navbar-brand" href="/">FooStore</a>
+	            <a class="navbar-brand" href="/"><img src="/images/brand.jpg"></a>
 	        </div>
 	        <ul class="nav nav-pills navbar-inverse nav-justified">
 	            <li><a href="/products">Products</a>

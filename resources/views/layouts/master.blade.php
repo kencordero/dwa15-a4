@@ -19,10 +19,16 @@
 	            <a class="navbar-brand" href="/"><img src="/images/brand.jpg"></a>
 	        </div>
 	        <ul class="nav nav-pills navbar-inverse nav-justified">
-	            <li><a href="/products">Products</a>
-	            <li><a href="/wishlist">Wishlist</a>
-	            <li><a href="/cart">Cart</a>
-	            <li><a href="/orders">Orders</a>
+				<li><a href="/products">Products</a>
+				@if (Auth::check())
+		            <li><a href="/wishlist">Wishlist</a>
+	            	<li><a href="/cart">Cart</a>
+	            	<li><a href="/orders">Orders</a>
+					<li><a href="/logout">Log out</a>
+				@else
+					<li><a href="/login">Log in</a>
+					<li><a href="/register">Register</a>
+				@endif
 	        </ul>
 	    </nav>
 	</header>

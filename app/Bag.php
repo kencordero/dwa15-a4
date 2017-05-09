@@ -34,7 +34,7 @@ class Bag extends Model
 
         if (in_array($productId, $productIdsInCart)) {
             if ($this->type == 'cart') {
-                $quantity = $this->products->where('id', '=', $productId)->first()->pivot->quantity;
+                $quantity = $this->products->where('id', $productId)->first()->pivot->quantity;
                 $this->products()->updateExistingPivot($productId, ['quantity' => $quantity + 1,]);
                 $this->save;
             }
@@ -57,8 +57,8 @@ class Bag extends Model
     }
 
     private static function getOrCreateBagType($bagType) {
-        $bag = Bag::where('type', '=', $bagType)
-            ->where('user_id', '=', Auth::id())
+        $bag = Bag::where('type', $bagType)
+            ->where('user_id', Auth::id())
             ->with('products')->first();
 
         if (is_null($bag)) {

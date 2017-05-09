@@ -20,7 +20,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::where('user_id', '=', Auth::id())->get();
 
         return view('orders.index')->with([
             'orders' => $orders,

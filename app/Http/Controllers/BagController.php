@@ -54,7 +54,10 @@ class BagController extends Controller
      */
     public function checkout()
     {
-        return view('bags.checkout');
+        $bag = Bag::getOrCreateCart();
+        return view('bags.checkout')->with([
+            'products' => $bag->products,
+        ]);
     }
 
     /*
@@ -63,10 +66,11 @@ class BagController extends Controller
      */
     public function placeOrder(Request $request)
     {
-        $bag = Bag::placeOrder();
-        return view('bags.placeOrder')->with([
-            'products' => $bag->products,
-        ]);
+        $success = Bag::placeOrder();
+
+        dump($success);
+
+        return view('bags.placeOrder');
     }
 
     /*
@@ -77,7 +81,7 @@ class BagController extends Controller
     {
         $bag = Bag::getOrCreateWishList();
 
-        return view('bags.showWishList')->with([
+        return view('bags.showWishlist')->with([
             'products' => $bag->products,
         ]);
     }

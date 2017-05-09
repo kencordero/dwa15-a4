@@ -13,6 +13,10 @@ class Bag extends Model
        return $this->belongsTo('App\User');
     }
 
+    public function order() {
+        return $this->hasOne('App\Order');
+    }
+
     public function products() {
         return $this->belongsToMany('App\Product')->withPivot('quantity')->withTimestamps();
     }
@@ -39,12 +43,17 @@ class Bag extends Model
         }
     }
 
-    public function placeOrder() {
+    public static function placeOrder() {
         $bag = Bag::getOrCreateCart();
+        if ($bag->products->count() == 0) {
+            return false;
+        }
         $bag->type = 'order';
-        $bag->save;
+        $bag->save();
 
-        return $bag;
+        Order::createOrder($bag);
+
+        return true;
     }
 
     private static function getOrCreateBagType($bagType) {

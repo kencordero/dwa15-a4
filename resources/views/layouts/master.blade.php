@@ -24,7 +24,12 @@
 		            <li><a href="/wishlist">Wishlist</a>
 	            	<li><a href="/cart">Cart</a>
 	            	<li><a href="/orders">Orders</a>
-					<li><a href="/logout">Log out</a>
+					<li>
+						<form method="post" action="/logout">
+							{{ csrf_field() }}
+							<button>Log out</button>
+						</form>
+					</li>
 				@else
 					<li><a href="/login">Log in</a>
 					<li><a href="/register">Register</a>

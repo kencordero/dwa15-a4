@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use App\Bag;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -29,9 +31,10 @@ class OrderController extends Controller
      *  GET
      *  /orders/{id}
      */
-    public function showOrderDetails()
+    public function showOrderDetails($id)
     {
-        $order = Order::find($id);
+        $order = Order::with('bag')->find($id);
+
         // TODO only show order if it is associated with the current user
 
         return view('orders.orderDetail')->with([

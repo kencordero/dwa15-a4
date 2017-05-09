@@ -17,17 +17,14 @@ class Order extends Model
     }
 
     public static function createOrder($bag) {
-        $totalPrice = 0;
-        foreach ($bag->products as $product) {
-            $totalPrice += $product->price * $product->pivot->quantity;
-        }
+
 
         $order = Order::create([
             'bag_id' => $bag->id,
             'user_id' => $bag->user_id,
             'payment_method' => 'credit',
             'status' => 'placed',
-            'total_price' => $totalPrice,
+            'total_price' => $bag->getSubTotal(),
         ]);
     }
 }

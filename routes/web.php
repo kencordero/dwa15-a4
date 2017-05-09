@@ -28,8 +28,8 @@ Route::post('/cart', 'BagController@addToCart');
 Route::get('/cart/checkout', 'BagController@checkout');
 Route::post('/cart/checkout', 'BagController@placeOrder');
 
-Route::get('/wishlist', 'BagController@showWishList');
-Route::post('/wishlist', 'BagController@addToWishList');
+Route::get('/wishlist', 'BagController@showWishlist');
+Route::post('/wishlist', 'BagController@addToWishlist');
 
 Route::get('/orders', 'OrderController@index');
 Route::get('/orders/{id}', 'OrderController@showOrderDetails');

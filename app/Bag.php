@@ -25,7 +25,7 @@ class Bag extends Model
         return Bag::getOrCreateBagType('cart');
     }
 
-    public static function getOrCreateWishList() {
+    public static function getOrCreateWishlist() {
         return Bag::getOrCreateBagType('wishlist');
     }
 
@@ -45,15 +45,21 @@ class Bag extends Model
 
     public static function placeOrder() {
         $bag = Bag::getOrCreateCart();
-        if ($bag->products->count() == 0) {
-            return false;
+        if ($bag->products->count() > 0) {
+            $bag->type = 'order';
+            $bag->save();
+
+            Order::createOrder($bag);
         }
-        $bag->type = 'order';
-        $bag->save();
+        return $bag;
+    }
 
-        Order::createOrder($bag);
-
-        return true;
+    public function getSubTotal($bag) {
+        $subtotal = 0;
+        foreach ($bag->products as $product) {
+            $subtotal += $product->price * $product->pivot->quantity;
+        }
+        return $subtotal;
     }
 
     private static function getOrCreateBagType($bagType) {

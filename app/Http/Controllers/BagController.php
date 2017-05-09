@@ -77,9 +77,9 @@ class BagController extends Controller
      * GET
      * /wishlist
      */
-    public function showWishList()
+    public function showWishlist()
     {
-        $bag = Bag::getOrCreateWishList();
+        $bag = Bag::getOrCreateWishlist();
 
         return view('bags.showWishlist')->with([
             'products' => $bag->products,
@@ -90,9 +90,9 @@ class BagController extends Controller
      * POST
      * /wishlist
      */
-     public function addToWishList(Request $request)
+     public function addToWishlist(Request $request)
      {
-         $bag = Bag::getOrCreateWishList();
+         $bag = Bag::getOrCreateWishlist();
          $bag->addToBag($request->productId);
 
          Session::flash('message', 'Added to wish list');

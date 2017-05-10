@@ -66,9 +66,11 @@ class BagController extends Controller
      */
     public function placeOrder(Request $request)
     {
-        $success = Bag::placeOrder();
+        $bag = Bag::placeOrder();
 
-        dump($success);
+        if (config('app.env') == 'local') {
+            dump($bag);
+        }
 
         return view('bags.placeOrder');
     }

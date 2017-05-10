@@ -17,8 +17,6 @@ class Order extends Model
     }
 
     public static function createOrder($bag) {
-
-
         $order = Order::create([
             'bag_id' => $bag->id,
             'user_id' => $bag->user_id,

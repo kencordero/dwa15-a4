@@ -54,9 +54,9 @@ class Bag extends Model
         return $bag;
     }
 
-    public function getSubTotal($bag) {
+    public function getSubTotal() {
         $subtotal = 0;
-        foreach ($bag->products as $product) {
+        foreach ($this->products as $product) {
             $subtotal += $product->price * $product->pivot->quantity;
         }
         return $subtotal;

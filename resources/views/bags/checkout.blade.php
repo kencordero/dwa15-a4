@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @if($products->count() > 0)
     <ul>
         @foreach($products as $product)
         <li>{{ $product->name }}, {{ $product->pivot->quantity }}</li>
@@ -14,4 +15,7 @@
         {{ csrf_field() }}
         <button class="btn btn-primary">Place order</button>
     </form>
+    @else
+        <div><i>You can't check out because your cart is empty.</i></div>
+    @endif
 @endsection

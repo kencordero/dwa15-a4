@@ -7,7 +7,7 @@
 @section('content')
     @if ($products->count() > 0)
         <div class="row">
-            <div class="col-md-offset-3 col-md-2">
+            <div class="col-md-offset-2 col-md-2">
                 <b>Item</b>
             </div>
             <div class="col-md-2">
@@ -20,14 +20,21 @@
         <br>
         @foreach($products as $product)
             <div class="row">
-                <div class="col-md-offset-3 col-md-2">
+                <div class="itemtext col-md-offset-2 col-md-2">
                     {{ $product->name }}
                 </div>
-                <div class="col-md-2">
+                <div class="itemtext col-md-2">
                     {{ $product->pivot->quantity }}
                 </div>
-                <div class="col-md-2">
+                <div class="itemtext col-md-2">
                     {{ $product->price }}
+                </div>
+                <div class="col-md-2">
+                    <form method="post" action="/cart/product">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="productId" value="{{ $product->id }}">
+                        <input type="submit" class="btn btn-danger" value="Remove from cart">
+                    </form>
                 </div>
             </div>
             <br>

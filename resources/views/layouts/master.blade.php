@@ -17,6 +17,9 @@
 		@if(Session::get('message-success') != null)
 			<div class="text-center alert-success">{{ Session::get('message-success') }}</div>
 		@endif
+		@if(Session::get('message-info') != null)
+			<div class="text-center alert-info">{{ Session::get('message-info') }}</div>
+		@endif
 		<nav class="nav navbar">
 	        <div class="navbar-header">
 	            <a class="navbar-brand" href="/"><img src="/images/fs_350x75.gif"></a>

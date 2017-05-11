@@ -8,14 +8,21 @@
     @if ($products->count() > 0)
         @foreach($products as $product)
             <div class="row">
-                <div class="col-md-offset-3 col-md-2">
+                <div class="itemtext col-md-offset-3 col-md-2">
                     {{ $product->name }}
                 </div>
-                <div class="col-md-1">
-                    <form method="post" action="/cart">
+                <div class="col-md-2">
+                    <form method="post" action="/wishlist/cart">
                         {{ csrf_field() }}
                         <input type="hidden" name="productId" value="{{ $product->id }}">
                         <input type="submit" class="btn btn-primary" value="Move to cart">
+                    </form>
+                </div>
+                <div class="col-md-2">
+                    <form method="post" action="/wishlist/product">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="productId" value="{{ $product->id }}">
+                        <input type="submit" class="btn btn-danger" value="Remove from wishlist">
                     </form>
                 </div>
             </div>

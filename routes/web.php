@@ -24,12 +24,15 @@ Route::get('/products/random', 'ProductController@showRandomProduct');
 
 Route::get('/cart', 'BagController@showCart');
 Route::post('/cart', 'BagController@addToCart');
-// TODO remove from cart
+Route::post('/cart/product', 'BagController@removeFromCart');
+
 Route::get('/cart/checkout', 'BagController@checkout');
 Route::post('/cart/checkout', 'BagController@placeOrder');
 
 Route::get('/wishlist', 'BagController@showWishlist');
 Route::post('/wishlist', 'BagController@addToWishlist');
+Route::post('/wishlist/cart', 'BagController@moveToCart');
+Route::post('/wishlist/product', 'BagController@removeFromWishlist');
 
 Route::get('/orders', 'OrderController@index');
 Route::get('/orders/{id}', 'OrderController@showOrderDetails');

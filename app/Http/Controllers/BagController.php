@@ -47,12 +47,45 @@ class BagController extends Controller
     }
 
     /*
-     *  ???
-     *  /???
+     *  POST
+     *  /wishlist/product
+     */
+    public function removeFromWishlist(Request $request)
+    {
+        $bag = Bag::getOrCreateWishlist();
+        $bag->removeFromBag($request->productId);
+
+        Session::flash('message-info', 'Item removed from wishlist');
+        return redirect('/wishlist');
+    }
+
+    /*
+     * POST
+     * /cart/product
      */
     public function removeFromCart(Request $request)
     {
-        // TODO
+        $bag = Bag::getOrCreateCart();
+        $bag->removeFromBag($request->productId);
+
+        Session::flash('message-info', 'Item removed from cart');
+        return redirect('/cart');
+    }
+
+    /*
+     * POST
+     * /wishlist/cart
+     */
+    public function moveToCart(Request $request)
+    {
+        $wishlist = Bag::getOrCreateWishlist();
+        $cart = Bag::getOrCreateCart();
+
+        $cart->addToBag($request->productId);
+        $wishlist->removeFromBag($request->productId);
+
+        Session::flash('message-success', 'Item moved to cart');
+        return redirect('/cart');
     }
 
     /*

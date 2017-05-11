@@ -16,5 +16,3 @@
     <h4>The online destination for all* of your shopping needs</h4>
     <sub><i>*three</i></sub>
 @endsection
-
-

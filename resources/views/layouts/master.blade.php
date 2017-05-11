@@ -22,7 +22,7 @@
 		@endif
 		<nav class="nav navbar">
 	        <div class="navbar-header">
-	            <a class="navbar-brand" href="/"><img src="/images/fs_350x75.gif"></a>
+	            <a class="navbar-brand" href="/"><img src="/images/fs_350x75.gif" alt="FooStore"></a>
 	        </div>
 	        <ul class="nav nav-pills nav-justified">
 				<li><a href="/products">Products</a>

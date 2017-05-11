@@ -11,8 +11,11 @@
 </head>
 <body>
 	<header>
-		@if(Session::get('message') != null)
-			<div class="message">{{ Session::get('message') }}</div>
+		@if(Session::get('message-error') != null)
+			<div class="text-center alert-danger">{{ Session::get('message-error') }}</div>
+		@endif
+		@if(Session::get('message-success') != null)
+			<div class="text-center alert-success">{{ Session::get('message-success') }}</div>
 		@endif
 		<nav class="nav navbar">
 	        <div class="navbar-header">

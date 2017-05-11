@@ -7,7 +7,18 @@
 @section('content')
     @if($orders->count() > 0)
         @foreach ($orders as $order)
-            <a href="/orders/{{ $order->id }}">{{ $order->created_at }} ${{ $order->total_price }}</a>
+            <div class="row">
+            <div class="col-md-offset-3 col-md-3">
+                {{-- for Date formatting - http://php.net/manual/en/function.date.php --}}
+                Order placed: {{ date('F jS, Y', strtotime($order->created_at)) }}
+            </div>
+            <div class="col-md-2">
+                Total: ${{ $order->total_price }}
+            </div>
+            <div class="col-md-3">
+                <a href="/orders/{{ $order->id }}">Order Details</a>
+            </div>
+            </div>
             <br>
         @endforeach
     @else

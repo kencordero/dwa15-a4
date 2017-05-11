@@ -4,7 +4,7 @@
 	<title>@yield('title')</title>
 
 	<meta charset="utf-8">
-	<link rel="shortcut icon" type="image/x-icon" href="/favicon-shopping-cart.ico">
+	<link rel="shortcut icon" type="image/x-icon" href="/images/fs_fav_48.gif">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/app.css" >
     @stack('head')
@@ -16,9 +16,9 @@
 		@endif
 		<nav class="nav navbar">
 	        <div class="navbar-header">
-	            <a class="navbar-brand" href="/"><img src="/images/brand.jpg"></a>
+	            <a class="navbar-brand" href="/"><img src="/images/fs_350x75.gif"></a>
 	        </div>
-	        <ul class="nav nav-pills navbar-inverse nav-justified">
+	        <ul class="nav nav-pills nav-justified">
 				<li><a href="/products">Products</a>
 				@if (Auth::check())
 		            <li><a href="/wishlist">Wishlist</a>
@@ -39,6 +39,7 @@
 	</header>
 
 	<div class="container">
+		<hr>
 		@yield('content')
 	</div>
 

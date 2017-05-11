@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Bag;
+use App\Product;
 
 class BagController extends Controller
 {
@@ -31,10 +32,16 @@ class BagController extends Controller
      */
     public function addToCart(Request $request)
     {
-        $bag = Bag::getOrCreateCart();
-        $bag->addToBag($request->productId);
+        $product = Product::find($request->productId);
+        if ($product == null) {
+            Session::flash('message-error', 'Product not found');
+            return redirect('/cart');
+        }
 
-        Session::flash('message', 'Added to cart');
+        $bag = Bag::getOrCreateCart();
+        $bag->addToBag($product->id);
+
+        Session::flash('message-success', 'Added '.$product->name.' to cart');
 
         return redirect('/cart');
     }
@@ -68,11 +75,9 @@ class BagController extends Controller
     {
         $bag = Bag::placeOrder();
 
-        if (config('app.env') == 'local') {
-            dump($bag);
-        }
+        Session::flash('message-success', 'Congratulations, your order has been placed! Thank you for your patronage.');
 
-        return view('bags.placeOrder');
+        return redirect('/orders/'.$bag->order->id);
     }
 
     /*
@@ -97,7 +102,7 @@ class BagController extends Controller
          $bag = Bag::getOrCreateWishlist();
          $bag->addToBag($request->productId);
 
-         Session::flash('message', 'Added to wish list');
+         Session::flash('message-success', 'Added to wish list');
 
          return redirect('/wishlist');
      }

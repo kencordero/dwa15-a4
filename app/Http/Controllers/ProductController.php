@@ -31,7 +31,7 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if (is_null($product)) {
-            Session::flash('message', 'Product not found');
+            Session::flash('message-error', 'Product not found');
             return redirect('/products');
         }
 

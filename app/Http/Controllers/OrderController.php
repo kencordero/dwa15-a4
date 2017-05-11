@@ -21,7 +21,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('user_id', Auth::id())->get();
+        $orders = Order::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
 
         return view('orders.index')->with([
             'orders' => $orders,
@@ -37,7 +37,7 @@ class OrderController extends Controller
         $order = Order::with('bag')->find($id);
 
         if ($order->user_id != Auth::id()) {
-            Session::flash('message', 'Order not found');
+            Session::flash('message-error', 'Order not found');
             return redirect('/orders');
         }
 

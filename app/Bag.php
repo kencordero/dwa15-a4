@@ -30,9 +30,7 @@ class Bag extends Model
     }
 
     public function addToBag($productId) {
-        $productIdsInCart = array_pluck($this->products->toArray(), 'id');
-
-        if (in_array($productId, $productIdsInCart)) {
+        if (in_array($productId, $this->getProductIds())) {
             if ($this->type == 'cart') {
                 $quantity = $this->products->where('id', $productId)->first()->pivot->quantity;
                 $this->products()->updateExistingPivot($productId, ['quantity' => $quantity + 1,]);
@@ -41,6 +39,27 @@ class Bag extends Model
         } else {
             $this->products()->attach($productId, ['quantity' => 1,]);
         }
+    }
+
+    public function decrementQuantity($productId) {
+        if (in_array($productId, $this->getProductIds())) {
+            $quantity = $this->products->where('id', $productId)->first()->pivot->quantity;
+            if ($quantity > 1) {
+                $this->products()->updateExistingPivot($productId, ['quantity' => $quantity - 1]);
+            } else {
+                $this->removeFromBag($productId);
+            }
+        }
+    }
+
+    public function removeFromBag($productId) {
+        if (in_array($productId, $this->getProductIds())) {
+            $this->products()->detach($productId);
+        }
+    }
+
+    private function getProductIds() {
+        return array_pluck($this->products->toArray(), 'id');
     }
 
     public static function placeOrder() {

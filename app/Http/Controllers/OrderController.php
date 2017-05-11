@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Bag;
+use Session;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -35,7 +36,10 @@ class OrderController extends Controller
     {
         $order = Order::with('bag')->find($id);
 
-        // TODO only show order if it is associated with the current user
+        if ($order->user_id != Auth::id()) {
+            Session::flash('message', 'Order not found');
+            return redirect('/orders');
+        }
 
         return view('orders.orderDetail')->with([
             'order' => $order,

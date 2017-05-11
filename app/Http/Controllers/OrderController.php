@@ -37,7 +37,7 @@ class OrderController extends Controller
         $order = Order::with('bag')->find($id);
 
         if ($order->user_id != Auth::id()) {
-            Session::flash('message-error', 'Order not found');
+            Session::flash('message-danger', 'Order not found');
             return redirect('/orders');
         }
 

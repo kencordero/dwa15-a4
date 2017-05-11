@@ -34,7 +34,7 @@ class BagController extends Controller
     {
         $product = Product::find($request->productId);
         if ($product == null) {
-            Session::flash('message-error', 'Product not found');
+            Session::flash('message-danger', 'Product not found');
             return redirect('/cart');
         }
 
@@ -55,7 +55,7 @@ class BagController extends Controller
         $bag = Bag::getOrCreateWishlist();
         $bag->removeFromBag($request->productId);
 
-        Session::flash('message-info', 'Item removed from wishlist');
+        Session::flash('message-warning', 'Item removed from wishlist');
         return redirect('/wishlist');
     }
 
@@ -68,7 +68,7 @@ class BagController extends Controller
         $bag = Bag::getOrCreateCart();
         $bag->removeFromBag($request->productId);
 
-        Session::flash('message-info', 'Item removed from cart');
+        Session::flash('message-warning', 'Item removed from cart');
         return redirect('/cart');
     }
 

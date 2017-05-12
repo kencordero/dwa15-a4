@@ -75,6 +75,11 @@
     "image_file": "trainers.jpg"
   },
   {
+    "name": "thingamabob",
+    "price": 4.99,
+    "image_file": "thingamabob.jpg"
+  },
+  {
     "name": "television",
     "price": 2499.99,
     "image_file": "tv.jpg"

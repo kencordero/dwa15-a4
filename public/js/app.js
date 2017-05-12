@@ -4,3 +4,7 @@ $('nav ul li a').each(function() {
         $(this).parent().addClass('active');
     }
 });
+
+$('#logoutLink').click(function () {
+   $('#logoutForm').submit();
+});

@@ -31,9 +31,9 @@
 	            	<li><a href="/cart">Cart</a>
 	            	<li><a href="/orders">Orders</a>
 					<li>
-						<form method="post" action="/logout">
+						<form id="logoutForm" method="post" action="/logout">
 							{{ csrf_field() }}
-							<button>Log out</button>
+							<a id="logoutLink" href="#">Log out</a>
 						</form>
 					</li>
 				@else
